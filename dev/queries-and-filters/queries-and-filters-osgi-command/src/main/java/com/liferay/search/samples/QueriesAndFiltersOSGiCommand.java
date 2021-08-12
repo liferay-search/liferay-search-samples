@@ -17,7 +17,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 @Component(
-	property = {"osgi.command.function=search", "osgi.command.scope=r2d2"},
+	property = {"osgi.command.function=search", "osgi.command.scope=liferay"},
 	service = QueriesAndFiltersOSGiCommand.class
 )
 public class QueriesAndFiltersOSGiCommand {
