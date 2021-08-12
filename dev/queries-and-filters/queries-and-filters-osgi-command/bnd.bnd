@@ -1,3 +1,3 @@
-Bundle-Name: Acme R2D2 Impl
-Bundle-SymbolicName: com.acme.r2d2.impl
+Bundle-Name: Liferay Search Queries and Filters Sample
+Bundle-SymbolicName: com.liferay.search.samples.osgi.commands
 Bundle-Version: 1.0.0

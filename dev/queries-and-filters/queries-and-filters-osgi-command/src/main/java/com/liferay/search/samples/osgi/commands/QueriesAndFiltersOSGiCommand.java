@@ -1,4 +1,4 @@
-package com.liferay.search.samples;
+package com.liferay.search.samples.osgi.commands;
 
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.util.LocaleUtil;
