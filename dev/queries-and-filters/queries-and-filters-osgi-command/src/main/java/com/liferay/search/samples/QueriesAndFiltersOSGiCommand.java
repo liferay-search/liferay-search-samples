@@ -1,4 +1,4 @@
-package com.acme.r2d2.search.osgi;
+package com.liferay.search.samples;
 
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -18,9 +18,9 @@ import org.osgi.service.component.annotations.Reference;
 
 @Component(
 	property = {"osgi.command.function=search", "osgi.command.scope=r2d2"},
-	service = R2D2SearchOSGiCommand.class
+	service = QueriesAndFiltersOSGiCommand.class
 )
-public class R2D2SearchOSGiCommand {
+public class QueriesAndFiltersOSGiCommand {
 
 	public void search(String keywords) {
 		MatchQuery titleQuery = _queries.match(
