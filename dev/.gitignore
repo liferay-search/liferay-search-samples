@@ -1,0 +1,13 @@
+bin
+build
+bundles
+node_modules
+*.class
+.classpath
+.DS_Store
+.gradle
+*.jar
+.metadata
+.project
+.settings
+.vscode
