@@ -26,9 +26,9 @@ public class QueriesAndFiltersOSGiCommand {
 		MatchQuery titleQuery = _queries.match(
 			Field.getLocalizedName(LocaleUtil.US, Field.TITLE), keywords);
 
-		TermsQuery rootFolderQuery = _queries.terms(Field.ENTRY_CLASS_NAME);
+		TermsQuery rootFolderQuery = _queries.terms(Field.FOLDER_ID);
 
-		rootFolderQuery.addValues("com.liferay.journal.model.JournalArticle");
+		rootFolderQuery.addValues("0");
 
 		BooleanQuery booleanQuery = _queries.booleanQuery();
 
