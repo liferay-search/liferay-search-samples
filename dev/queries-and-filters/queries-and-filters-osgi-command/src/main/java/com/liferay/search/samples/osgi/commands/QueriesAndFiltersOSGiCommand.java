@@ -1,3 +1,8 @@
+/**
+* SPDX-FileCopyrightText: © 2021 Liferay, Inc. <https://liferay.com>
+* SPDX-License-Identifier: MIT
+*/
+
 package com.liferay.search.samples.osgi.commands;
 
 import com.liferay.portal.kernel.search.Field;
