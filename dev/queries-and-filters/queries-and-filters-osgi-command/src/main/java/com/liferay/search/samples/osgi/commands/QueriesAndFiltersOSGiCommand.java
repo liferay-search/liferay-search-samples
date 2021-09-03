@@ -12,6 +12,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -36,7 +37,7 @@ public class QueriesAndFiltersOSGiCommand {
 
 	public void search(String keywords) {
 		MatchQuery titleQuery = _queries.match(
-			Field.getLocalizedName(LocaleUtil.US, Field.TITLE), keywords);
+			StringBundler.concat("localized_", Field.TITLE, StringPool.UNDERLINE, LocaleUtil.US), keywords);
 
 		TermQuery rootFolderQuery = _queries.term(Field.FOLDER_ID, "0");
 
@@ -49,16 +50,11 @@ public class QueriesAndFiltersOSGiCommand {
 
 		long companyId = _portal.getDefaultCompanyId();
 
-		searchRequestBuilder.explain(
-			true
-		).includeResponseString(
-			true
-		).withSearchContext(
+		searchRequestBuilder.withSearchContext(
 			searchContext -> {
 				searchContext.setCompanyId(companyId);
 				searchContext.setKeywords(keywords);
-			}
-		);
+			});
 
 		SearchRequest searchRequest = searchRequestBuilder.query(
 			booleanQuery
@@ -71,30 +67,20 @@ public class QueriesAndFiltersOSGiCommand {
 		List<SearchHit> searchHitsList = searchHits.getSearchHits();
 
 		List<String> resultsList = new ArrayList<>(searchHitsList.size());
-		
-		if (!searchHitsList.isEmpty()) {
 
 		searchHitsList.forEach(
 			searchHit -> {
-				float hitScore = searchHit.getScore();
-
 				Document doc = searchHit.getDocument();
 
 				String uid = doc.getString(Field.UID);
 
 				System.out.println(
 					StringBundler.concat(
-						"Document ", uid, " had a score of ", hitScore));
+						"Document ", uid, " had a score of ",
+						searchHit.getScore()));
 
 				resultsList.add(uid);
 			});
-		}
-		else {
-		System.out.println(
-			"Request String:\n" + searchResponse.getRequestString());
-		System.out.println(
-			"Response String:\n" + searchResponse.getResponseString());
-		}
 	}
 
 	@Reference
