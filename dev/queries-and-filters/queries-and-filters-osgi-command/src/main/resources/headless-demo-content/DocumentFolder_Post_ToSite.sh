@@ -1,12 +1,11 @@
 # $1 is the liferay site ID, $2 is the global site ID--both are now found in site settings > site configuration (7.4.2-ga3)
 
-
 if [ "${#}" -ne 2 ]
 then
-    echo "ERROR"
-    echo "You must pass 2 arguments: the site ID of the default site (e.g., 20125), and the site ID of the global site (e.g., 20127)."
-    echo "To find these IDs, navigate to each site's Site Settings > Site Configuration screen."
-    exit
+	echo "ERROR"
+	echo "You must pass 2 arguments: the site ID of the default site (e.g., 20125), and the site ID of the global site (e.g., 20127)."
+	echo "To find these IDs, navigate to each site's Site Settings > Site Configuration screen."
+	exit
 fi
 
 # Add a root level document
@@ -41,8 +40,8 @@ curl \
 
 # Get the basic web content structure ID
 curl \
-    "http://localhost:8080/o/headless-delivery/v1.0/sites/${2}/content-structures?search=Basic%20Web%20Content" \
-    -u "test@liferay.com:test"
+	"http://localhost:8080/o/headless-delivery/v1.0/sites/${2}/content-structures?search=Basic%20Web%20Content" \
+	-u "test@liferay.com:test"
 
 echo "Enter the ID:"
 read contentStructuredId
@@ -57,7 +56,7 @@ curl \
 
 # Add a web content folder
 curl \
-    -H "Content-Type: application/json" \
+	-H "Content-Type: application/json" \
 	-X POST \
 	"http://localhost:8080/o/headless-delivery/v1.0/sites/${1}/structured-content-folders" \
 	-d "{\"description\": \"Foo\", \"name\": \"Able Folder\"}" \

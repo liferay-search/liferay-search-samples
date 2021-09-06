@@ -1,15 +1,9 @@
 /**
-* SPDX-FileCopyrightText: © 2021 Liferay, Inc. <https://liferay.com>
-* SPDX-License-Identifier: MIT
-*/
+ * SPDX-FileCopyrightText: © 2021 Liferay, Inc. <https://liferay.com>
+ * SPDX-License-Identifier: MIT
+ */
 
 package com.liferay.search.samples.osgi.commands;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -29,6 +23,12 @@ import com.liferay.portal.search.searcher.SearchRequestBuilderFactory;
 import com.liferay.portal.search.searcher.SearchResponse;
 import com.liferay.portal.search.searcher.Searcher;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+
 @Component(
 	property = {"osgi.command.function=search", "osgi.command.scope=liferay"},
 	service = QueriesAndFiltersOSGiCommand.class
@@ -37,7 +37,9 @@ public class QueriesAndFiltersOSGiCommand {
 
 	public void search(String keywords) {
 		MatchQuery titleQuery = _queries.match(
-			StringBundler.concat("localized_", Field.TITLE, StringPool.UNDERLINE, LocaleUtil.US), keywords);
+			StringBundler.concat(
+				"localized_", Field.TITLE, StringPool.UNDERLINE, LocaleUtil.US),
+			keywords);
 
 		TermQuery rootFolderQuery = _queries.term(Field.FOLDER_ID, "0");
 
